@@ -10,7 +10,7 @@
 ## 环境准备
 
 ```bash
-cd click-translate/python-app
+cd word-translator/python-app
 python -m venv .venv            # Windows
 .venv\Scripts\activate
 pip install -r requirements.txt
