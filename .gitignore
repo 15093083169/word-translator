@@ -1,32 +1,10 @@
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-dist/
-build/
-*.egg-info/
-*.spec
-.eggs/
-*.egg
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
+# 通用
 .DS_Store
 Thumbs.db
-desktop.ini
+*.log
+__pycache__/
 
-# Environment
-.env
-.venv/
-venv/
+python-app/.venv*/
+python-app/build/
+python-app/dist/
 
-# Config (don't commit user config)
-.user_config.json
-
-# PyInstaller
-*.manifest

@@ -1,40 +1,40 @@
 {
   "manifest_version": 3,
-  "name": "划词翻译 - Word Translator",
+  "name": "Click Translate",
+  "description": "划词翻译：选中文本后使用快捷键或右键菜单，调用 GLM-4-Flash 翻译，弹出深色气泡并提供复制按钮。",
   "version": "1.0.0",
-  "description": "选中文字，连按两次 Ctrl，即可使用 GLM-4-Flash 翻译",
-  "permissions": ["storage", "activeTab"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "https://open.bigmodel.cn/*"
+  ],
   "background": {
     "service_worker": "background.js"
   },
+  "action": {
+    "default_title": "Click Translate",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
+      "js": ["contentScript.js"],
       "css": ["content.css"],
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
   ],
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    }
-  },
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
   "commands": {
     "translate-selection": {
+      "description": "点击后翻译当前选中文本（默认 Alt+Shift+T）",
       "suggested_key": {
-        "default": "Ctrl+Shift+T",
-        "mac": "Command+Shift+T"
-      },
-      "description": "翻译选中的文字"
+        "default": "Alt+Shift+T"
+      }
     }
   }
 }

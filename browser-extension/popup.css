@@ -1,0 +1,260 @@
+/* popup.css — 翻译气泡样式 */
+
+#click-translate-bubble {
+  position: fixed;
+  z-index: 2147483647;
+  width: 300px;
+  max-width: 90vw;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  color: #1a1a1a;
+  overflow: hidden;
+  animation: ct-fadeIn 0.2s ease-out;
+}
+
+@keyframes ct-fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ct-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.ct-title {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ct-close {
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.ct-close:hover {
+  opacity: 1;
+}
+
+.ct-body {
+  padding: 14px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.ct-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #666;
+  padding: 8px 0;
+}
+
+.ct-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e0e0e0;
+  border-top: 2px solid #667eea;
+  border-radius: 50%;
+  animation: ct-spin 0.8s linear infinite;
+}
+
+@keyframes ct-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ct-original {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  word-break: break-word;
+}
+
+.ct-result {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  word-break: break-word;
+}
+
+.ct-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.ct-copy-btn {
+  flex: 1;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.ct-copy-btn:hover {
+  opacity: 0.9;
+}
+
+.ct-copy-btn:active {
+  transform: scale(0.97);
+}
+
+.ct-error {
+  color: #e74c3c;
+  font-size: 13px;
+  padding: 4px 0;
+  line-height: 1.5;
+}
+
+/* ============ 设置页面样式 ============ */
+
+.options-container {
+  width: 400px;
+  padding: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f8f9fa;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.options-container h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+}
+
+.options-container .subtitle {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 24px 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.form-group input[type="password"],
+.form-group input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.btn-save {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.btn-save:hover {
+  opacity: 0.9;
+}
+
+.btn-save:active {
+  transform: scale(0.98);
+}
+
+.btn-test {
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+  color: #667eea;
+  border: 1px solid #667eea;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+
+.btn-test:hover {
+  background: #f5f3ff;
+}
+
+.status-msg {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: none;
+}
+
+.status-msg.success {
+  display: block;
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+
+.status-msg.error {
+  display: block;
+  background: #fef2f2;
+  color: #e74c3c;
+  border: 1px solid #fecaca;
+}
+
+.usage-hint {
+  margin-top: 20px;
+  padding: 14px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.usage-hint h3 {
+  font-size: 14px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.usage-hint p {
+  font-size: 12px;
+  color: #666;
+  margin: 0 0 4px 0;
+  line-height: 1.5;
+}
