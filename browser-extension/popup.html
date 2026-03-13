@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>划词翻译 - 设置</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 380px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #3498db, #2980b9);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .header p {
+      font-size: 12px;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 13px;
+      background: white;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #3498db;
+    }
+
+    .save-btn {
+      width: 100%;
+      padding: 12px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+
+    .save-btn:hover {
+      background: #2980b9;
+    }
+
+    .save-btn:disabled {
+      background: #bdc3c7;
+      cursor: not-allowed;
+    }
+
+    .status {
+      text-align: center;
+      font-size: 12px;
+      color: #27ae60;
+      margin-top: 12px;
+      min-height: 18px;
+    }
+
+    .usage {
+      margin-top: 16px;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+
+    .usage h3 {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .usage p {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    .usage kbd {
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 1px 5px;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📖 划词翻译</h1>
+    <p>Word Translator · GLM-4-Flash</p>
+  </div>
+
+  <div class="content">
+    <div class="form-group">
+      <label>API Key <span style="color: #e74c3c;">*</span></label>
+      <input type="password" id="apiKey" placeholder="输入智谱 AI API Key">
+    </div>
+
+    <div class="form-group">
+      <label>模型</label>
+      <select id="model">
+        <option value="glm-4-flash">GLM-4-Flash（推荐）</option>
+        <option value="glm-4-air">GLM-4-Air</option>
+        <option value="glm-4-plus">GLM-4-Plus</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>翻译为</label>
+      <select id="targetLang">
+        <option value="中文">中文</option>
+        <option value="英文">English</option>
+        <option value="日文">日本語</option>
+        <option value="韩文">한국어</option>
+        <option value="法文">Français</option>
+        <option value="德文">Deutsch</option>
+      </select>
+    </div>
+
+    <button class="save-btn" id="saveBtn">💾 保存设置</button>
+    <div class="status" id="status"></div>
+
+    <div class="usage">
+      <h3>💡 使用方法</h3>
+      <p>在任意网页选中文字，<strong>连按两次 <kbd>Ctrl</kbd></strong> 即可弹出翻译窗口。<br>
+      也可以使用快捷键 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>T</kbd> 触发翻译。</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
