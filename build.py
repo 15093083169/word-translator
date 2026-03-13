@@ -7,10 +7,26 @@ import sys
 import subprocess
 import shutil
 
+# 修复 Windows 控制台编码
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
+
+def get_python_exe():
+    """找到合适的 Python 解释器"""
+    # 优先使用 python（系统 PATH 中的），避免使用 AutoClaw 内置的
+    import shutil as _sh
+    for name in ['python', 'python3', sys.executable]:
+        path = _sh.which(name)
+        if path:
+            return path
+    return sys.executable
+
 
 def run(cmd):
     print(f"▶ {' '.join(cmd)}")
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace')
     if result.returncode != 0:
         print(f"❌ Error:\n{result.stderr}")
         sys.exit(1)
@@ -23,15 +39,17 @@ def main():
     dist = os.path.join(root, "dist")
     build_dir = os.path.join(root, "build")
 
+    python = get_python_exe()
+
     # 先生成图标
     print("🎨 生成图标...")
     icon_script = os.path.join(root, "resources", "generate_icons.py")
-    run([sys.executable, icon_script])
+    run([python, icon_script])
 
     # 安装依赖
     print("📦 安装依赖...")
-    run([sys.executable, "-m", "pip", "install", "-r", os.path.join(root, "requirements.txt")])
-    run([sys.executable, "-m", "pip", "install", "pyinstaller", "pillow"])
+    run([python, "-m", "pip", "install", "-r", os.path.join(root, "requirements.txt")])
+    run([python, "-m", "pip", "install", "pyinstaller", "pillow"])
 
     # 检查图标文件
     icon_path = os.path.join(root, "resources", "icon.ico")
@@ -42,7 +60,7 @@ def main():
 
     # PyInstaller 参数
     cmd = [
-        sys.executable, "-m", "PyInstaller",
+        python, "-m", "PyInstaller",
         "--name", "WordTranslator",
         "--windowed",  # 无控制台窗口
         "--onefile",   # 单文件

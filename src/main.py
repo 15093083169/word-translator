@@ -5,6 +5,11 @@
 import sys
 import os
 
+# 修复 Windows 控制台编码
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 # 将 src 目录加入路径
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 

@@ -2,6 +2,13 @@
 生成浏览器扩展和应用程序图标
 """
 import os
+import sys
+
+# 修复 Windows 控制台编码
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
 from PIL import Image, ImageDraw, ImageFont
 
 
